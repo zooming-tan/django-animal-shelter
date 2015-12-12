@@ -42,6 +42,7 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount',  # registration
     'haystack',
     'taggit',
+    'sorl.thumbnail',
 )
 
 # Apps specific for this project go here.
