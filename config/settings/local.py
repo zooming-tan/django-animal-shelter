@@ -65,3 +65,4 @@ CELERY_ALWAYS_EAGER = True
 ########## END CELERY
 
 # Your local stuff: Below this line define 3rd party library settings
+THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.dbm_kvstore.KVStore'
