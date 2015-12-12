@@ -43,4 +43,5 @@ curl
 llvm
 
 ##sorl-thumbnail
-imagemagick
+#imagemagick
+libmagickwand-dev
