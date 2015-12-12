@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% load thumbnail %}
 
 {% block content %}
 <div class="container">
@@ -52,7 +53,9 @@
     <div class="col-sm-6 col-md-3 masonry-item">
       <div class="thumbnail">
         {% if object.cover %}
-          <img class="img-rounded" src="{{ object.cover.img.url }}" alt="{{ object.name }}">
+          {% thumbnail object.cover.img "250" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+          {% endthumbnail %}
         {% endif %}
         <div class="caption text-center">
           <h3>{{ object.name }}</h3>

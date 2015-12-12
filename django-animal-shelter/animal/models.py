@@ -5,7 +5,7 @@ from model_utils.models import TimeStampedModel
 from django.core.urlresolvers import reverse
 from model_utils import Choices
 from taggit.managers import TaggableManager
-
+from sorl.thumbnail import ImageField
 
 BREED_CHOICES = Choices(
     'Border Collie',
@@ -81,7 +81,7 @@ class Photo(TimeStampedModel):
     # TODO: user-uploaded photos in MEDIA_ROOT are not deleted when the parent model is deleted?
     #       ref: https://github.com/un1t/django-cleanup
     #       ref: https://github.com/Chive/django-multiupload
-    img = models.ImageField(upload_to='photo/', null=True, blank=True)  # cannot be optional (definitive)
+    img = ImageField(upload_to='photo/', null=True, blank=True)  # cannot be optional (definitive)
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)  # one-to-many relationship
 
     def __str__(self):
