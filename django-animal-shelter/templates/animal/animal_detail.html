@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 
 {% block content %}
 
@@ -12,7 +13,9 @@
       <!-- cover photo -->
       <div class="thumbnail">
         {% if object.cover %}
-          <img class="img-rounded" src="{{ object.cover.img.url }}" alt="{{ object.name }}">
+          {% thumbnail object.cover.img "250" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+          {% endthumbnail %}
         {% else %}
           <!-- TODO: slot in placeholder -->
           <img src="http://placehold.it/250x280">
@@ -92,7 +95,9 @@
         {% for image in object.photo_set.all %}
           <div class="col-sm-6 col-md-3 masonry-item">
             <div class="thumbnail">
-              <img src="{{ image.img.url }}" alt="{{ img.img.name }}">
+              {% thumbnail image.img "250" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+              {% endthumbnail %}
             </div>
           </div>
         {% endfor %}
