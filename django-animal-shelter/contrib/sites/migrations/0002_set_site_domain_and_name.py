@@ -11,8 +11,8 @@ def update_site_forward(apps, schema_editor):
     Site.objects.update_or_create(
         id=settings.SITE_ID,
         defaults={
-            "domain": "example.com",
-            "name": "project_name"
+            "domain": "EXAMPLE.com",
+            "name": "django-animal-shelter"
         }
     )
 

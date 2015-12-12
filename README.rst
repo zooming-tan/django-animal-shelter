@@ -1,4 +1,4 @@
-project_name
+django-animal-shelter
 ==============================
 
 A short description of the project.

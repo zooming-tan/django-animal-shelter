@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Django settings for project_name project.
+Django settings for 'django-animal-shelter' project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/dev/topics/settings/
@@ -32,6 +32,7 @@ DJANGO_APPS = (
     # 'django.contrib.humanize',
 
     # Admin
+    'flat',
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
@@ -39,12 +40,15 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'haystack',
+    'taggit',
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'django-animal-shelter.users',  # custom users app
     # Your stuff: custom apps go here
+    'django-animal-shelter.animal',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -233,3 +237,10 @@ BROKER_URL = env("CELERY_BROKER_URL", default='django://')
 ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': str(ROOT_DIR('whoosh_index')),
+    },
+}
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

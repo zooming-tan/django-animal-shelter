@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- TODO: create thumbnails for large image -->
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm-12 col-md-3">
+
+      <!-- cover photo -->
+      <div class="thumbnail">
+        {% if object.cover %}
+          <img class="img-rounded" src="{{ object.cover.img.url }}" alt="{{ object.name }}">
+        {% else %}
+          <!-- TODO: slot in placeholder -->
+          <img src="http://placehold.it/250x280">
+        {% endif %}
+      </div>
+
+      <!-- profile sidebar -->
+      <div class="well well-lg">
+        <h4 class="border-colored">Details</h4>
+        <p>Breed: {{ object.breed|default_if_none:"" }}</p>
+        <p>Age: {{ object.age|default_if_none:"" }}</p>
+        <p>Sex: {% if object.sex and object.is_neutered %}{{ object.sex|default_if_none:"" }}
+          {% if object.sex == 'Male' %}
+            {% if object.is_neutered %}
+              <span class="badge badge-warning">neutered</span>
+            {% else %}
+              <span class="badge">intact</span>
+            {% endif %}
+          {% else %}
+              {% if object.is_neutered %}
+                <span class="badge badge-warning">spayed</span>
+              {% else %}
+                <span class="badge">intact</span>
+              {% endif %}
+          {% endif %}{% endif %}</p>
+        <p>Size: {{ object.size|default_if_none:"" }}</p>
+
+        <!-- TODO: object.get_absolute_url returns relative path, not the full URL! -->
+        <p>URL to this page:
+        <img class="center-block" src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ object.get_absolute_url }}" alt="QR Code"></p>
+      </div>
+      
+    </div>
+
+
+    <div class="col-sm-12 col-md-9">
+
+      <h3 class="smaller-top-margin">{{ object.name }}&nbsp;
+        {% if object.tags.all %}
+        <!-- TODO: apply URL link to tag ListView, TagMixin(get_queryset(self) filtered by self.kwargs.get['tagname']) -->
+          {% for tag in object.tags.all %}
+            <span class="badge">{{ tag }}</span>
+          {% endfor %}
+        {% endif %}
+      </h3>
+
+
+      <div class="bordered">
+        <h4 class="border-colored">About me</h4>
+        <p>{{ object.biography|linebreaks }}</p>
+        <button type="button" class="btn btn-warning adopt-me">
+          <i class="fa fa-heart fa-fw"></i>&nbsp; Adopt me
+        </button>
+        <button type="button" class="btn btn-success adopt-me">
+          <i class="fa fa-gift fa-fw"></i>&nbsp; Sponsor me
+        </button>
+        {% if user.is_superuser %}
+          <a href="{{ object.get_admin_change_url }}?redirect=obj"><button type="button" class="btn btn-primary adopt-me">
+            <i class="fa fa-pencil fa-fw"></i>&nbsp; Edit my info
+          </button></a>
+        {% endif %}
+
+      </div>
+
+      <div class="bordered">
+        <h4 class="border-colored">My health condition</h4>
+
+        <!-- TODO: health records (allergy etc) -->
+
+      </div>
+
+      <div class="bordered">
+        <h4 class="border-colored">My photo album</h4>
+
+        <!-- TODO: photo album using masonry -->
+        <div class="row masonry-grid">
+        {% for image in object.photo_set.all %}
+          <div class="col-sm-6 col-md-3 masonry-item">
+            <div class="thumbnail">
+              <img src="{{ image.img.url }}" alt="{{ img.img.name }}">
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+
+      </div>
+
+      <div class="bordered">
+        <h4 class="border-colored">My family members</h4>
+        <!-- TODO: models -->
+      </div>
+
+      <div class="bordered">
+        <h4 class="border-colored">More pets like me</h4>
+        <!-- TODO: models -->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script>
+  // see: http://stackoverflow.com/a/26923093
+  $(window).load(function(){  // is fired after the whole content (images) is loaded
+        $('.masonry-grid').masonry({
+          itemSelector: '.masonry-item',
+          columnWidth: '.masonry-item',
+          percentPosition: true
+        });
+  });
+  </script>
+{% endblock javascript %}

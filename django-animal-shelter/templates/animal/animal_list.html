@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12 col-md-4 add-margin-bottom">
+      <div class="btn-group" role="group" aria-label="Search options">
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#filterModal">Filter</button>
+        <button class="btn btn-default" type="button">Sort by</button>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3 pull-right">
+      <form method="get" action='../search/' role="search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search..." name="q">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal fade" id="filterModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Filter</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              {% crispy form form.helper %}
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">TODO Apply</button>
+        </div>
+      </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+  </div> <!-- /.modal -->
+
+  <!-- Grid of images -->
+  <div class="row masonry-grid">
+  {% for object in object_list %}
+    <div class="col-sm-6 col-md-3 masonry-item">
+      <div class="thumbnail">
+        {% if object.cover %}
+          <img class="img-rounded" src="{{ object.cover.img.url }}" alt="{{ object.name }}">
+        {% endif %}
+        <div class="caption text-center">
+          <h3>{{ object.name }}</h3>
+          {% if object.biography %}
+            <p>{{ object.biography|truncatewords:15 }}</p>
+          {% endif %}
+          <!-- target="_blank" to open in a new tab -->
+          <p><a href="{{ object.get_absolute_url }}" class="btn btn-warning" role="button" target="_blank">Read more</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-xs-12">
+      <p>No result found. Please try again.</p>
+    </div>
+  {% endfor %}
+  </div>
+
+  {% include 'animal/pagination.html' %}
+
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script>
+  // see: http://stackoverflow.com/a/26923093
+  $(window).load(function(){  // is fired after the whole content (images) is loaded
+        $('.masonry-grid').masonry({
+          itemSelector: '.masonry-item',
+          columnWidth: '.masonry-item',
+          percentPosition: true
+        });
+  });
+  </script>
+{% endblock javascript %}

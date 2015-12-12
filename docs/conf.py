@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# project_name documentation build configuration file, created by
+# django-animal-shelter documentation build configuration file, created by
 # sphinx-quickstart.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -41,7 +41,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'project_name'
+project = u'django-animal-shelter'
 copyright = u"2015, Zu Ming Tan"
 
 # The version info for the project you're documenting, acts as replacement for
@@ -186,7 +186,7 @@ latex_elements = {
 latex_documents = [
     ('index',
      'django-animal-shelter.tex',
-     u'project_name Documentation',
+     u'django-animal-shelter Documentation',
      u"Zu Ming Tan", 'manual'),
 ]
 
@@ -216,7 +216,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'django-animal-shelter', u'project_name Documentation',
+    ('index', 'django-animal-shelter', u'django-animal-shelter Documentation',
      [u"Zu Ming Tan"], 1)
 ]
 
@@ -230,8 +230,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'django-animal-shelter', u'project_name Documentation',
-     u"Zu Ming Tan", 'project_name',
+    ('index', 'django-animal-shelter', u'django-animal-shelter Documentation',
+     u"Zu Ming Tan", 'django-animal-shelter',
      'A short description of the project.', 'Miscellaneous'),
 ]
 
