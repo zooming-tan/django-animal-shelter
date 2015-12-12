@@ -1,0 +1,5 @@
+[run]
+include = django-animal-shelter/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin
