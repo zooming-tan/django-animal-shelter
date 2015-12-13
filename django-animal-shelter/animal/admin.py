@@ -38,11 +38,11 @@ class AnimalAdmin(admin.ModelAdmin):
     # the admin listview
     list_display = ['name', 'breed', 'age', 'sex', 'size', 'is_neutered']
     list_filter = ['modified', 'created','age', 'sex', 'size', 'is_neutered']
-    search_fields = ['name', 'breed', 'biography']
+    search_fields = ['name', 'breed', 'biography', 'tags']
 
     # 
     fieldsets = [
-        ('Basic info',               {'fields': ['name', 'biography']}),
+        ('Basic info',               {'fields': ['name', 'biography', 'tags']}),
         ('Profile', {'fields': ['breed', 'age', 'sex', 'size', 'is_neutered', 'cover']}),
         #('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
     ]
