@@ -34,15 +34,32 @@
         </div>
         <div class="modal-body">
           <div class="row">
+
             <div class="col-xs-12 col-md-6">
-              {% crispy form form.helper %}
+              <form action="." method="get">
+                {{ form|crispy }}
+                <div class="row" style="margin-bottom: 20px;">
+                  <div class="col-xs-3">
+                    <input type="submit" value="Submit" class="btn btn-success">
+                  </div>
+                  <div class="col-xs-3">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </form>
             </div>
+
+            <div class="col-xs-12 col-md-6">
+              <img src="{% static 'images/abstract-cat-dog-line-art-image-34604128.jpg' %}" class="popup-clipart" >
+            </div>
+
           </div>
         </div>
+        <!--
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">TODO Apply</button>
-        </div>
+        </div> -->
       </div> <!-- /.modal-content -->
     </div> <!-- /.modal-dialog -->
   </div> <!-- /.modal -->

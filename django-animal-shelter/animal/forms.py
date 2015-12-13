@@ -7,13 +7,3 @@ class SearchAndFilterForm(forms.ModelForm): ### TODO: dump all these definitions
     class Meta:
         model = Animal
         fields = ('breed', 'age', 'sex', 'size', 'is_neutered')
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # override
-        self.helper = FormHelper()
-        self.helper.form_method = 'get'
-        self.helper.form_action = '.'
-        self.helper.disable_csrf = True
-        self.helper.add_input(Submit('apply', 'Apply'))

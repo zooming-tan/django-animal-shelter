@@ -55,3 +55,8 @@ body {
 .add-margin-bottom {
     margin-bottom: 5px;
 }
+
+.popup-clipart {
+    max-width: 100%;
+    margin-top: 45px;
+}
