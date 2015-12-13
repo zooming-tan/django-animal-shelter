@@ -34,6 +34,9 @@ class AnimalCustomAdminForm(forms.ModelForm):
 # parent model
 class AnimalAdmin(admin.ModelAdmin):
     form = AnimalCustomAdminForm
+    list_display = ['name', 'breed', 'age', 'sex', 'size', 'is_neutered']
+    list_filter = ['modified', 'created','age', 'sex', 'size', 'is_neutered']
+    search_fields = ['name', 'breed', 'biography']
     inlines = [
         PhotoInline,
     ]
