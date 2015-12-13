@@ -54,7 +54,7 @@ class Animal(TimeStampedModel):
 
     # Avoid using null on string-based fields such as CharField and TextField 
     # ref: https://docs.djangoproject.com/en/1.8/ref/models/fields/#null
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     biography = models.TextField(max_length=1500, blank=True, help_text=_('A short introduction'))
 
     # 1. Set related_name='+' to stop the error
