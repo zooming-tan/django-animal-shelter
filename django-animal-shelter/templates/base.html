@@ -20,7 +20,7 @@
     <!-- Your stuff: Third-party css libraries go here -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'bootflat/css/bootflat.css' %}">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 
     <!-- This file store project specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
@@ -44,31 +44,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">django-animal-shelter</a>
+          <a class="navbar-brand" href="{% url 'home' %}"><i class="fa fa-paw fa-fw"></i>django-<strong>animal-shelter</strong></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'home' %}"><i class="fa fa-home"></i>&nbsp; Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="{% url 'about' %}">Our mission</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
                 <li><a href="#">Separated link</a></li>
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
+            <li><a href="#contact">Contact Us</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
-            <li><a href="../navbar-fixed-top/">Fixed top</a></li>
-
             {% if request.user.is_authenticated %}
               <li><a href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a></li>
               <li><a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
@@ -119,19 +113,11 @@
       <div class="container">
         <div class="clearfix">
           <div class="footer-logo">
-            <a href="#"><img src="img/footer-logo.png">PLACEHOLDER</a>
+            <a href="#"><i class="fa fa-paw fa-fw"></i>PLACEHOLDER</a>
           </div>
           <dl class="footer-nav">
-            <dt class="nav-title">PORTFOLIO</dt>
-            <dd class="nav-item"><a href="#">Web Design</a></dd>
-            <dd class="nav-item"><a href="#">Branding &amp; Identity</a></dd>
-            <dd class="nav-item"><a href="#">Mobile Design</a></dd>
-            <dd class="nav-item"><a href="#">Print</a></dd>
-            <dd class="nav-item"><a href="#">User Interface</a></dd>
-          </dl>
-          <dl class="footer-nav">
             <dt class="nav-title">ABOUT</dt>
-            <dd class="nav-item"><a href="#">The Company</a></dd>
+            <dd class="nav-item"><a href="#">The Organisation</a></dd>
             <dd class="nav-item"><a href="#">History</a></dd>
             <dd class="nav-item"><a href="#">Vision</a></dd>
           </dl>
@@ -146,9 +132,17 @@
             <dt class="nav-title">CONTACT</dt>
             <dd class="nav-item"><a href="#">Basic Info</a></dd>
             <dd class="nav-item"><a href="#">Map</a></dd>
-            <dd class="nav-item"><a href="#">Conctact Form</a></dd>
+            <dd class="nav-item"><a href="#">Contact Form</a></dd>
+          </dl>
+
+          <dl class="footer-nav">
+            <dd class="nav-item"><a href="#"><i class="fa fa-map-marker fa-fw"></i>&nbsp; Block 14, Victory Avenue, 75000 Malaysia</a></dd>
+            <dd class="nav-item"><a href="#"><i class="fa fa-phone fa-fw"></i>&nbsp;+60-06-2341318</a></dd>
+            <dd class="nav-item"><a href="mailto:support@company.com"><i class="fa fa-envelope fa-fw"></i>&nbsp;support@company.com</a></dd>
+          </dl>
+
         </div>
-        <div class="footer-copyright text-center">Copyright © 2014 PLACEHOLDER.All rights reserved.</div>
+        <div class="footer-copyright text-center">Copyright © 2016 PLACEHOLDER. All rights reserved.</div>
       </div>
     </div>
     {% endblock footer %}
