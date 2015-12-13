@@ -45,7 +45,7 @@
 
         <!-- TODO: object.get_absolute_url returns relative path, not the full URL! -->
         <p>URL to this page:
-        <img class="center-block" src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ object.get_absolute_url }}" alt="QR Code"></p>
+        <img class="center-block" src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl={{ request.build_absolute_uri }}{% url 'animal:detail' object.pk %}" alt="QR Code"></p>
       </div>
       
     </div>
