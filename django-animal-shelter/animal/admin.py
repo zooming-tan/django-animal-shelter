@@ -2,7 +2,14 @@ from django import forms
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 from .models import Animal, Photo
+
+
+class AnimalResource(resources.ModelResource):
+    class Meta:
+        model = Animal
 
 # child models first
 class PhotoInline(admin.TabularInline):
@@ -32,7 +39,7 @@ class AnimalCustomAdminForm(forms.ModelForm):
 
 
 # parent model
-class AnimalAdmin(admin.ModelAdmin):
+class AnimalAdmin(ImportExportModelAdmin):
     form = AnimalCustomAdminForm
 
     # the admin listview
@@ -40,7 +47,7 @@ class AnimalAdmin(admin.ModelAdmin):
     list_filter = ['modified', 'created','age', 'sex', 'size', 'is_neutered']
     search_fields = ['name', 'breed', 'biography', 'tags']
 
-    # 
+    #
     fieldsets = [
         ('Basic info',               {'fields': ['name', 'biography', 'tags']}),
         ('Profile', {'fields': ['breed', 'age', 'sex', 'size', 'is_neutered', 'cover']}),

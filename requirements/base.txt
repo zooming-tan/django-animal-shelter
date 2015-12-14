@@ -48,3 +48,5 @@ Whoosh==2.7.0
 
 sorl-thumbnail==12.3
 Wand==0.4.2
+
+django-import-export==0.4.1

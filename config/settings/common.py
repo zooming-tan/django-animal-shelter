@@ -43,6 +43,7 @@ THIRD_PARTY_APPS = (
     'haystack',
     'taggit',
     'sorl.thumbnail',
+    'import_export',
 )
 
 # Apps specific for this project go here.
