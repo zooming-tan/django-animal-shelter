@@ -75,7 +75,13 @@
           {% endthumbnail %}
         {% endif %}
         <div class="caption text-center">
-          <h3>{{ object.name }}</h3>
+          <h3>{{ object.name }}
+            {% if object.sex == 'Male' %}
+              <i class="fa fa-mars fa-fw"></i>
+            {% elif object.sex == 'Female' %}
+              <i class="fa fa-venus fa-fw"></i>
+            {% endif %}
+          </h3>
           {% if object.biography %}
             <p>{{ object.biography|truncatewords:15 }}</p>
           {% endif %}
