@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = (
     'taggit',
     'sorl.thumbnail',
     'import_export',
+    'paginator',
 )
 
 # Apps specific for this project go here.
